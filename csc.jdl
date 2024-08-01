@@ -1,0 +1,69 @@
+entity Template {
+    @id libelle String
+    description String
+    imageHeigth Double
+    imageWidth Double
+    imageX Double
+    imageY Double
+    matriculeX Double
+    matriculeY Double
+    membreX Double
+    membreY Double
+    nomX Double
+    nomY Double
+    prenomX Double
+    prenomY Double
+    qrHeight Double
+    qrWidth Double
+    qrX Double
+    qrY Double
+    dateDelivranceX Double
+    dateDelivranceY Double
+    dateExpirationX Double
+    dateExpirationY Double
+    sampleLargeur Double
+    sampleLongueur Double
+    pdfContentRecto Blob
+    pdfContentVerso Blob
+}
+
+entity Carte {
+    @id matricule String 
+    name String
+    surname String
+    email String
+    villeResidence  String
+    birthdate ZonedDateTime
+    telephone1  String
+    telephone2 String
+    isImprime Boolean
+    pictureExtension String
+    picture Blob
+    dateDelivrance LocalDate
+    dateExpiration LocalDate
+}
+
+
+relationship ManyToOne {
+    Carte{template} to Template
+}
+
+
+// Set pagination options
+paginate * with pagination
+
+filter all
+
+// Use Data Transfer Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+//service * with serviceClass
+
+// Set an angular suffix
+angularSuffix * with mySuffix
+
+dto * with mapstruct
+
