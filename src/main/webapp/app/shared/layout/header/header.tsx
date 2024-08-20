@@ -7,10 +7,14 @@ import LoadingBar from 'react-redux-loading-bar';
 
 import { Home, Brand } from './header-components';
 import { AdminMenu, EntitiesMenu, AccountMenu } from '../menus';
+import { useAppSelector } from 'app/config/store';
+import { hasAnyAuthority } from 'app/shared/auth/private-route';
+import { AUTHORITIES } from 'app/config/constants';
 
 export interface IHeaderProps {
   isAuthenticated: boolean;
   isAdmin: boolean;
+  isAdministrateur: boolean;
   ribbonEnv: string;
   isInProduction: boolean;
   isOpenAPIEnabled: boolean;
@@ -42,7 +46,18 @@ const Header = (props: IHeaderProps) => {
             <Home />
             {props.isAuthenticated && <EntitiesMenu />}
             {props.isAuthenticated && props.isAdmin && (
-              <AdminMenu showOpenAPI={props.isOpenAPIEnabled} showDatabase={!props.isInProduction} />
+              <AdminMenu
+                showOpenAPI={props.isOpenAPIEnabled}
+                showDatabase={!props.isInProduction}
+                isAdministrateur={!props.isAdministrateur}
+              />
+            )}
+            {props.isAuthenticated && props.isAdministrateur && (
+              <AdminMenu
+                showOpenAPI={props.isOpenAPIEnabled}
+                showDatabase={!props.isInProduction}
+                isAdministrateur={props.isAdministrateur}
+              />
             )}
             <AccountMenu isAuthenticated={props.isAuthenticated} />
           </Nav>

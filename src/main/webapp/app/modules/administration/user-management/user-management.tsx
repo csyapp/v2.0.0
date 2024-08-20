@@ -100,10 +100,10 @@ export const UserManagement = () => {
         Utilisateurs
         <div className="d-flex justify-content-end">
           <Button className="me-2" color="info" onClick={handleSyncList} disabled={loading}>
-            <FontAwesomeIcon icon="sync" spin={loading} /> Actualiser la liste
+            <FontAwesomeIcon icon="sync" spin={loading} /> Actualiser
           </Button>
           <Link to="new" className="btn btn-primary jh-create-entity">
-            <FontAwesomeIcon icon="plus" /> Créer un nouvel utilisateur
+            <FontAwesomeIcon icon="plus" /> Créer
           </Link>
         </div>
       </h2>

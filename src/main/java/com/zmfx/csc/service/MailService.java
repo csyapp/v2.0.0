@@ -1,6 +1,7 @@
 package com.zmfx.csc.service;
 
 import com.zmfx.csc.domain.User;
+import com.zmfx.csc.service.dto.CarteDTO;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import java.nio.charset.StandardCharsets;
@@ -8,6 +9,7 @@ import java.util.Locale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -28,6 +30,8 @@ public class MailService {
     private static final Logger log = LoggerFactory.getLogger(MailService.class);
 
     private static final String USER = "user";
+
+    private static final String CARTE = "carte";
 
     private static final String BASE_URL = "baseUrl";
 
@@ -116,5 +120,26 @@ public class MailService {
     public void sendPasswordResetMail(User user) {
         log.debug("Sending password reset email to '{}'", user.getEmail());
         this.sendEmailFromTemplateSync(user, "mail/passwordResetEmail", "email.reset.title");
+    }
+
+    @Async
+    public void sendCardPrintedMail(CarteDTO carteDTO) {
+        log.debug("Sending card printed email to '{}'", carteDTO.getEmail());
+        this.sendEmailFromTemplateSync2(carteDTO);
+    }
+
+    private void sendEmailFromTemplateSync2(CarteDTO carteDTO) {
+        if (carteDTO.getEmail() == null) {
+            log.debug("Email doesn't exist for member '{}'", carteDTO.getSurname() + " " + carteDTO.getName());
+            return;
+        }
+        Locale locale = Locale.forLanguageTag("fr");
+        Context context = new Context(locale);
+        context.setVariable(CARTE, carteDTO);
+        context.setVariable("logoc", new ClassPathResource("images/logo-canon-writing.png"));
+        context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
+        String content = templateEngine.process("mail/cartePrintedEmail", context);
+        String subject = messageSource.getMessage("email.card.printed.title", null, locale);
+        this.sendEmailSync(carteDTO.getEmail(), subject, content, false, true);
     }
 }

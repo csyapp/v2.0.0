@@ -25,6 +25,14 @@ const adminMenuItems = () => (
   </>
 );
 
+const administrateurMenuItems = () => (
+  <>
+    <MenuItem icon="users" to="/admin/user-management">
+      Gestion des utilisateurs
+    </MenuItem>
+  </>
+);
+
 const openAPIItem = () => (
   <MenuItem icon="book" to="/admin/docs">
     API
@@ -37,12 +45,13 @@ const databaseItem = () => (
   </DropdownItem>
 );
 
-export const AdminMenu = ({ showOpenAPI, showDatabase }) => (
+export const AdminMenu = ({ showOpenAPI, showDatabase, isAdministrateur }) => (
   <NavDropdown icon="users-cog" name="Administration" id="admin-menu" data-cy="adminMenu">
-    {adminMenuItems()}
+    {!isAdministrateur && adminMenuItems()}
+    {isAdministrateur && administrateurMenuItems()}
     {showOpenAPI && openAPIItem()}
 
-    {showDatabase && databaseItem()}
+    {!isAdministrateur && showDatabase && databaseItem()}
   </NavDropdown>
 );
 

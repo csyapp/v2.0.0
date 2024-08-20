@@ -3,6 +3,12 @@
     "applicationType": "monolith",
     "authenticationType": "jwt",
     "baseName": "csc",
+    "blueprints": [
+      {
+        "name": "generator-jhipster-entity-audit",
+        "version": "5.5.0"
+      }
+    ],
     "buildTool": "maven",
     "cacheProvider": "ehcache",
     "clientFramework": "react",
@@ -15,10 +21,11 @@
     "enableHibernateCache": true,
     "enableSwaggerCodegen": false,
     "enableTranslation": false,
-    "entities": [],
+    "entities": ["Template", "Carte"],
     "feignClient": null,
     "jhipsterVersion": "8.6.0",
     "jwtSecretKey": "Y2U5MjU5ZTE1MjEwMjhiZTdhMTY4ZDVhYzJjMTM2NDQ0MDU2YTRhMTA2NTFiMjcwNWQ0NjdmYjVlOGVkNTQ1NGIxYzM1MDgxY2UwMmRiMGUxYmRkYTBmY2E0ZDc1MjQ5NTFiNTMwNjJiZDVkMTIzZmM0NTc0MjFmNDZhYzk2MDM=",
+    "lastLiquibaseTimestamp": 1722492603000,
     "messageBroker": false,
     "microfrontend": null,
     "microfrontends": [],
@@ -34,5 +41,10 @@
     "testFrameworks": [],
     "websocket": false,
     "withAdminUi": true
+  },
+  "generator-jhipster-entity-audit": {
+    "auditFramework": "custom",
+    "auditPage": true,
+    "entityAuditEventChangelogDate": "20240801061003"
   }
 }

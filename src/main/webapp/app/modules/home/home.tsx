@@ -16,7 +16,7 @@ export const Home = () => {
         <span className="hipster rounded" />
       </Col>
       <Col md="9">
-        <h1 className="display-4">Bienvenue, Java Hipster !</h1>
+        <h1 className="display-4">Bienvenue, KPA KUM !!!</h1>
         <p className="lead">Ceci est votre page d&apos;accueil</p>
         {account?.login ? (
           <div>
@@ -30,8 +30,9 @@ export const Home = () => {
               <Link to="/login" className="alert-link">
                 connecter
               </Link>
-              , vous pouvez utiliser les comptes par défaut : <br /> - Administrateur (nom d&apos;utilisateur=&quot;admin&quot; et mot de
-              passe =&quot;admin&quot;) <br /> - Utilisateur (nom d&apos;utilisateur=&quot;user&quot; et mot de passe =&quot;user&quot;).
+              , vous pouvez utiliser les roles suivants :
+              <br /> - ROLE_ADMINISTRATEUR (pour les opérations de monitoring et de forçage)
+              <br /> - ROLE_IMPRIMEUR (pour les opérations créations/impression/consultation de cartes de supporters ).
             </Alert>
 
             <Alert color="warning">
@@ -42,43 +43,26 @@ export const Home = () => {
             </Alert>
           </div>
         )}
-        <p>Si vous avez des questions à propos de JHipster :</p>
+
+        <p>Toutes les informations sur la Canon Sportif De Yaoundé:</p>
 
         <ul>
           <li>
             <a href="https://www.jhipster.tech/" target="_blank" rel="noopener noreferrer">
-              Page d&apos;accueil de JHipster
+              Page d&apos;acceuil KPA KUM
             </a>
           </li>
           <li>
-            <a href="https://stackoverflow.com/tags/jhipster/info" target="_blank" rel="noopener noreferrer">
-              JHipster sur Stack Overflow
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              Page facebook
             </a>
           </li>
           <li>
-            <a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" rel="noopener noreferrer">
-              JHipster bug tracker
-            </a>
-          </li>
-          <li>
-            <a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">
-              JHipster public chat room
-            </a>
-          </li>
-          <li>
-            <a href="https://twitter.com/jhipster" target="_blank" rel="noopener noreferrer">
-              Suivez @jhipster sur Twitter
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              Page Twitter
             </a>
           </li>
         </ul>
-
-        <p>
-          Si vous aimez JHipster, donnez nous une étoile sur{' '}
-          <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">
-            GitHub
-          </a>
-          !
-        </p>
       </Col>
     </Row>
   );

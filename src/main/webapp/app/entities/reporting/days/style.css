@@ -1,0 +1,9 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.custom-tooltip {
+  border: 3px dotted red;
+  padding: 0px 10px;
+}

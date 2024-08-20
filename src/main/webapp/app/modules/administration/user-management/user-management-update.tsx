@@ -7,6 +7,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getUser, getRoles, updateUser, createUser, reset } from './user-management.reducer';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
+import { hasAnyAuthority } from 'app/shared/auth/private-route';
+import { AUTHORITIES } from 'app/config/constants';
+import { locale } from 'dayjs';
+
 export const UserManagementUpdate = () => {
   const dispatch = useAppDispatch();
 
@@ -40,11 +44,35 @@ export const UserManagementUpdate = () => {
     handleClose();
   };
 
+  const roleAdminItems = () => (
+    <ValidatedField type="select" name="authorities" label="Droits">
+      {authorities.map(role => (
+        <option value={role} key={role}>
+          {role}
+        </option>
+      ))}
+    </ValidatedField>
+  );
+
+  const roleAdministrateurItems = () => (
+    <ValidatedField type="select" name="authorities" label="Droits">
+      {authorities
+        .filter(role => role !== 'ROLE_ADMIN')
+        .filter(role => role !== 'ROLE_USER')
+        .map(role => (
+          <option value={role} key={role}>
+            {role}
+          </option>
+        ))}
+    </ValidatedField>
+  );
+
   const isInvalid = false;
   const user = useAppSelector(state => state.userManagement.user);
   const loading = useAppSelector(state => state.userManagement.loading);
   const updating = useAppSelector(state => state.userManagement.updating);
   const authorities = useAppSelector(state => state.userManagement.authorities);
+  const isAdministrateur = useAppSelector(state => hasAnyAuthority(state.authentication.account.authorities, [AUTHORITIES.ADMINISTRATEUR]));
 
   return (
     <div>
@@ -105,7 +133,7 @@ export const UserManagementUpdate = () => {
                   },
                 }}
               />
-              <FormText>This field cannot be longer than 50 characters.</FormText>
+              <FormText>Ce champ ne doit pas excéder 50 caractères.</FormText>
               <ValidatedField
                 name="email"
                 label="Email"
@@ -127,13 +155,17 @@ export const UserManagementUpdate = () => {
                   validate: v => isEmail(v) || "Votre email n'est pas valide.",
                 }}
               />
+              <br />
               <ValidatedField type="checkbox" name="activated" check value={true} disabled={!user.id} label="Activé" />
               <ValidatedField type="select" name="authorities" multiple label="Droits">
-                {authorities.map(role => (
-                  <option value={role} key={role}>
-                    {role}
-                  </option>
-                ))}
+                {authorities
+                  .filter(role => role !== 'ROLE_ADMIN')
+                  .filter(role => role !== 'ROLE_USER')
+                  .map(role => (
+                    <option value={role} key={role}>
+                      {role}
+                    </option>
+                  ))}
               </ValidatedField>
               <Button tag={Link} to="/admin/user-management" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />

@@ -1,0 +1,160 @@
+{
+  "angularJSSuffix": "mySuffix",
+  "annotations": {
+    "changelogDate": "20240801060916"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "enableAudit": true,
+  "fields": [
+    {
+      "fieldName": "libelle",
+      "fieldType": "String",
+      "options": {
+        "id": true
+      }
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "imageHeigth",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "imageWidth",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "imageX",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "imageY",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "matriculeX",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "matriculeY",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "membreX",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "membreY",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "nomX",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "nomY",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "prenomX",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "prenomY",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "qrHeight",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "qrWidth",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "qrX",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "qrY",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "dateDelivranceX",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "dateDelivranceY",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "dateExpirationX",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "dateExpirationY",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "sampleLargeur",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "sampleLongueur",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "pdfContentRecto",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "pdfContentVerso",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "auditField": true,
+      "autoGenerate": true,
+      "columnType": "varchar(50)",
+      "fieldName": "createdBy",
+      "fieldType": "String",
+      "nullable": false,
+      "readonly": true
+    },
+    {
+      "auditField": true,
+      "autoGenerate": true,
+      "fieldName": "createdDate",
+      "fieldType": "Instant",
+      "nullable": false,
+      "readonly": true
+    },
+    {
+      "auditField": true,
+      "autoGenerate": true,
+      "columnType": "varchar(50)",
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String",
+      "nullable": false,
+      "readonly": true
+    },
+    {
+      "auditField": true,
+      "autoGenerate": true,
+      "fieldName": "lastModifiedDate",
+      "fieldType": "Instant",
+      "nullable": false,
+      "readonly": true
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Template",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

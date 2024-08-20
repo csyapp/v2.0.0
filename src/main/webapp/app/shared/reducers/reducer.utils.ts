@@ -8,11 +8,17 @@ import {
   ValidateSliceCaseReducers,
 } from '@reduxjs/toolkit';
 import { AxiosError, isAxiosError } from 'axios';
+import { getMonthsInFrench } from 'app/shared/util/date-utils';
 
 /**
  * Model for redux actions with pagination
  */
-export type IQueryParams = { query?: string; page?: number; size?: number; sort?: string };
+export type IQueryParams = { query?: string; page?: number; size?: number; sort?: string; searchKey?: string; searchId?: string | number };
+
+/**
+ * Model for redux actions with pagination
+ */
+export type IQueryReportParams = { mois?: string; anneeInf?: string; anneeSup?: string; isImprime?: string; profondeur?: number };
 
 /**
  * Useful types for working with actions
@@ -125,3 +131,8 @@ export const createEntitySlice = <T, Reducers extends SliceCaseReducers<EntitySt
     },
   });
 };
+
+export const booleanMap: Map<number, string> = new Map([
+  [1, 'Oui'],
+  [2, 'Non'],
+]);

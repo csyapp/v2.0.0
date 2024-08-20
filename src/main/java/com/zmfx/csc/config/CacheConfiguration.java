@@ -50,6 +50,9 @@ public class CacheConfiguration {
             createCache(cm, com.zmfx.csc.domain.User.class.getName());
             createCache(cm, com.zmfx.csc.domain.Authority.class.getName());
             createCache(cm, com.zmfx.csc.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.zmfx.csc.domain.EntityAuditEvent.class.getName());
+            createCache(cm, com.zmfx.csc.domain.Template.class.getName());
+            createCache(cm, com.zmfx.csc.domain.Carte.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
