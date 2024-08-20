@@ -6,14 +6,10 @@ import com.zmfx.csc.domain.Carte;
 import com.zmfx.csc.repository.CarteRepository;
 import com.zmfx.csc.service.CarteService;
 import com.zmfx.csc.service.dto.CarteDTO;
-import com.zmfx.csc.service.dto.ReportingAnneeDTO;
-import com.zmfx.csc.service.dto.ReportingJourDTO;
-import com.zmfx.csc.service.dto.ReportingMoisDTO;
 import com.zmfx.csc.service.mapper.CarteMapper;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -112,20 +108,5 @@ public class CarteServiceImpl implements CarteService {
             .atStartOfDay(ZoneId.of("UTC"))
             .toInstant();
         return carteRepository.countCartesByCreatedDateBetween(instant1, instant2);
-    }
-
-    @Override
-    public List<ReportingJourDTO> getJourReporting(String annee, String mois) {
-        return carteRepository.getReportingJour(annee, mois);
-    }
-
-    @Override
-    public List<ReportingMoisDTO> getMoisReporting(String annee) {
-        return List.of();
-    }
-
-    @Override
-    public List<ReportingAnneeDTO> getAnneeReporting(Integer annee, Integer profondeur) {
-        return List.of();
     }
 }

@@ -53,28 +53,4 @@ public interface CarteService {
     void delete(String id);
 
     Long countAllCards();
-
-    /**
-     * Get daily base reporting on cards.
-     *
-     * @param annee, mois search criteria.
-     * @return list of quantity per day.
-     */
-    List<ReportingJourDTO> getJourReporting(String annee, String mois);
-
-    /**
-     * Get monthly base reporting on cards.
-     *
-     * @param annee search criteria .
-     * @return list of quantities per month.
-     */
-    List<ReportingMoisDTO> getMoisReporting(String annee);
-
-    /**
-     * Get annual based reporting on cards.
-     *
-     * @param annee, profonduer.
-     * @return list of  quantities per month.
-     */
-    List<ReportingAnneeDTO> getAnneeReporting(Integer annee, Integer profondeur);
 }

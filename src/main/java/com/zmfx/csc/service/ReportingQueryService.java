@@ -4,7 +4,9 @@ import com.zmfx.csc.repository.CarteRepository;
 import com.zmfx.csc.service.dto.ReportingAnneeDTO;
 import com.zmfx.csc.service.dto.ReportingJourDTO;
 import com.zmfx.csc.service.dto.ReportingMoisDTO;
+import java.time.Instant;
 import java.time.Month;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.List;
@@ -36,6 +38,18 @@ public class ReportingQueryService extends QueryService<ReportingJourDTO> {
         return carteRepository
             .getReportingJourTrue(annee, mois)
             .stream()
+            .map(
+                x ->
+                    new ReportingJourDTO(
+                        ((Instant) x[0]).atZone(ZoneId.systemDefault()).toLocalDate(),
+                        (Long) x[1],
+                        ((Instant) x[0]).atZone(ZoneId.systemDefault())
+                            .toLocalDate()
+                            .format(DateTimeFormatter.ofPattern("E. dd-MM-yyyy", Locale.forLanguageTag("fr"))),
+                        ((Instant) x[0]).atZone(ZoneId.systemDefault()).toLocalDate().getMonth(),
+                        ((Instant) x[0]).atZone(ZoneId.systemDefault()).toLocalDate().getYear()
+                    )
+            )
             .collect(Collectors.groupingBy(ReportingJourDTO::getDay, Collectors.summingLong(ReportingJourDTO::getQuantite)))
             .entrySet()
             .stream()
@@ -58,6 +72,18 @@ public class ReportingQueryService extends QueryService<ReportingJourDTO> {
         return carteRepository
             .getReportingJourFalse(annee, mois)
             .stream()
+            .map(
+                x ->
+                    new ReportingJourDTO(
+                        ((Instant) x[0]).atZone(ZoneId.systemDefault()).toLocalDate(),
+                        (Long) x[1],
+                        ((Instant) x[0]).atZone(ZoneId.systemDefault())
+                            .toLocalDate()
+                            .format(DateTimeFormatter.ofPattern("E. dd-MM-yyyy", Locale.forLanguageTag("fr"))),
+                        ((Instant) x[0]).atZone(ZoneId.systemDefault()).toLocalDate().getMonth(),
+                        ((Instant) x[0]).atZone(ZoneId.systemDefault()).toLocalDate().getYear()
+                    )
+            )
             .collect(Collectors.groupingBy(ReportingJourDTO::getDay, Collectors.summingLong(ReportingJourDTO::getQuantite)))
             .entrySet()
             .stream()
