@@ -74,7 +74,7 @@ public class SecurityConfiguration {
                     .requestMatchers(mvc.pattern("/*.ico"), mvc.pattern("/*.png"), mvc.pattern("/*.svg"), mvc.pattern("/*.webapp")).permitAll()
                     .requestMatchers(mvc.pattern("/app/**")).permitAll().requestMatchers(mvc.pattern("/*.pdf")).permitAll()
                     .requestMatchers(mvc.pattern("http://localhost:8080/*")).permitAll()
-                    .requestMatchers(mvc.pattern("https://csymanager-f4f968866441.herokuapp.com/*")).permitAll()
+                    .requestMatchers(mvc.pattern("https://csymanager-f879b5179dce.herokuapp.com/*")).permitAll()
                     .requestMatchers(mvc.pattern("/*/content/css/loading.css")).permitAll()
                     .requestMatchers(mvc.pattern("/i18n/**")).permitAll()
                     .requestMatchers(mvc.pattern("/content/**")).permitAll()
