@@ -4,7 +4,6 @@ import { pdfjs } from 'react-pdf';
 const PdfViewer: React.FC<{ id: string }> = ({ id }) => {
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
   const apiUrlPdf = '/api/cartes/pdf';
-  const url1 = 'http://localhost:8080/api/cartes/pdf';
 
   pdfjs.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.js', import.meta.url).toString();
 
@@ -22,7 +21,7 @@ const PdfViewer: React.FC<{ id: string }> = ({ id }) => {
       }
     };
 
-    fetchPdf().then(r => console.log('hello' + r));
+    fetchPdf().then();
   }, [id]);
 
   return <div>{pdfUrl && <iframe src={`${pdfUrl}`} width="100%" height="600px" />}</div>;

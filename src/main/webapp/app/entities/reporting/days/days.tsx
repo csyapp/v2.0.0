@@ -26,9 +26,9 @@ export const DaysPage = () => {
 
   const dispatch = useAppDispatch();
 
-  let [mois, setMois] = useState(getTodayMonth());
-  let [annee, setAnnee] = useState(getTodayYear);
-  let [isImprime, setIsImprime] = useState('Oui');
+  const [mois, setMois] = useState(getTodayMonth());
+  const [annee, setAnnee] = useState(getTodayYear);
+  const [isImprime, setIsImprime] = useState('Oui');
   const monthsMap = getMonthsInFrench();
   const booleanMap: Map<number, string> = new Map([
     [1, 'Oui'],
@@ -36,36 +36,34 @@ export const DaysPage = () => {
   ]);
   const reportingList = useAppSelector(state => state.reporting.entities);
 
-  const getAllEntities = (mois: string, annee: string, isImprime: string) => {
+  const getAllEntities = () => {
     dispatch(
       getReportingJour({
-        mois: mois,
+        mois,
         anneeInf: annee,
-        isImprime: isImprime,
+        isImprime,
       }),
     );
   };
 
   useEffect(() => {
-    getAllEntities(mois, annee, isImprime);
+    getAllEntities();
   }, [mois, annee, isImprime]);
 
   const handleInputChange = (e: { target: { name: any; value: any } }) => {
     const { name, value } = e.target;
-    console.log('==>>> handleInputChange ....');
     if (name === 'mois') {
       setMois(value);
     } else if (name === 'annee') {
       setAnnee(value);
     } else if (name === 'isImprime') {
-      console.log('==>>> handleInputChange isImprime');
       setIsImprime(value);
     }
   };
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    getAllEntities(mois, annee, isImprime);
+    getAllEntities();
   };
 
   return (

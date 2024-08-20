@@ -25,7 +25,6 @@ export const getEntities = createAsyncThunk('carte/fetch_entity_list', async ({ 
 });
 
 export const getSearchedEntities = createAsyncThunk('carte/fetch_entity_list', async ({ page, size, sort, searchKey }: IQueryParams) => {
-  //http://localhost:8080/api/cartes/search/ouin?page=0&size=20
   let requestUrl = `${apiUrlSearch}/`;
   searchKey = searchKey.replace(/[./%#;,><?]/g, ' ');
   if (searchKey == null || Object.keys(searchKey).length === 0) {
@@ -43,11 +42,8 @@ export const getPdfArray = createAsyncThunk(
   async (id: number, thunkAPI) => {
     const requestUrl = `${apiUrlPdf}/${id}`;
     try {
-      //const response: AxiosResponse<Blob> = await axios.get(requestUrl, {
-      //responseType: 'arraybuffer', // Set responseType to 'blob' to handle binary data
-      //});
       const response = await axios.get(requestUrl, {
-        responseType: 'arraybuffer', // Ensure response is treated as binary data
+        responseType: 'arraybuffer',
       });
       const base64Data = btoa(new Uint8Array(response.data).reduce((data, byte) => data + String.fromCharCode(byte), ''));
       const pdfUrl = `data:application/pdf;base64,${base64Data}`;

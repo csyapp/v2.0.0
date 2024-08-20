@@ -25,34 +25,32 @@ export const MonthsPage = () => {
   };
 
   const dispatch = useAppDispatch();
-  let [annee, setAnnee] = useState(getTodayYear);
-  let [isImprime, setIsImprime] = useState('Oui');
+  const [annee, setAnnee] = useState(getTodayYear);
+  const [isImprime, setIsImprime] = useState('Oui');
   const reportingList = useAppSelector(state => state.reportingMois.entities);
-  const getAllEntities = (annee: string, isImprime: string) => {
+  const getAllEntities = () => {
     dispatch(
       getReportingMois({
         anneeInf: annee,
-        isImprime: isImprime,
+        isImprime,
       }),
     );
   };
   useEffect(() => {
-    getAllEntities(annee, isImprime);
+    getAllEntities();
   }, [annee, isImprime]);
 
   const handleInputChange = (e: { target: { name: any; value: any } }) => {
     const { name, value } = e.target;
-    console.log('==>>> handleInputChange ....');
     if (name === 'annee') {
       setAnnee(value);
     } else if (name === 'isImprime') {
-      console.log('==>>> handleInputChange isImprime');
       setIsImprime(value);
     }
   };
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    getAllEntities(annee, isImprime);
+    getAllEntities();
   };
 
   return (

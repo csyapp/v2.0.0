@@ -20,7 +20,6 @@ const apiUrlReportingJour = 'api/reporting/jour';
 export const getReportingJour = createAsyncThunk('carte/reporting_jour', async ({ mois, anneeInf, isImprime }: IQueryReportParams) => {
   let requestUrl = `${apiUrlReportingJour}/` + `${anneeInf}` + `/` + `${mois}`;
   if (isImprime.toLowerCase() === 'Non'.toLowerCase()) {
-    console.log('==>>> handleInputChange isImprime == nom');
     requestUrl += `/` + `${isImprime}`;
   }
   return axios.get<IReportingMySuffix[]>(requestUrl);
